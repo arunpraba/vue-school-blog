@@ -1,0 +1,19 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  font-family: 'Avenir';
+  color: #2c3e50;
+}
+
+.card-width {
+  width: 320px;
+}
+
+.app-container {
+  margin-top: 5rem;
+}
