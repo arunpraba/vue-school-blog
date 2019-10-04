@@ -34,5 +34,7 @@ npm run lint
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+Fake JSON data generator
+
 https://www.json-generator.com/
 JSON generator : http://www.json-generator.com/api/json/get/cgyaLNkOXm?indent=2
