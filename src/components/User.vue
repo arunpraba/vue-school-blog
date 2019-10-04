@@ -10,7 +10,9 @@
         <p class="card-sub-title muted" v-if="list.posts.length>0">Posts</p>
         <ul class="list-group list-group-flush">
           <li class="list-group-item" v-for="post in list.posts" :key="post.id">
-            <b>{{post.title | capitalize}}</b>
+            <router-link :to="`/post/${list.id}/${post.id}`">
+              <b>{{post.title | capitalize}}</b>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -21,7 +23,6 @@
           class="btn btn-outlined btn btn-info btn-sm mr-2 mb-1"
           v-for="friend in list.friends"
           :key="friend.id"
-          @click="getFriendProfile(friend.name)"
         >{{friend.name}}</button>
       </div>
     </div>
@@ -62,13 +63,6 @@ export default {
       axios.get(this.fetchUrl).then(res => {
         this.lists = res.data;
       });
-    },
-    getFriendProfile(friendName) {
-      const name = friendName.replace(' ', '').toLowerCase();
-      const friendProfile = this.lists.find(
-        el => el.name.replace(' ', '').toLowerCase() === name
-      );
-      console.log(friendProfile);
     }
   }
 };

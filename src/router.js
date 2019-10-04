@@ -15,6 +15,11 @@ const routes = [
     path: '/user/:id',
     name: 'about-user',
     component: () => import('./components/AboutUser.vue')
+  },
+  {
+    path: '/post/:userId/:id',
+    name: 'post',
+    component: () => import('./components/UserProfile/PostFullView.vue')
   }
 ];
 
