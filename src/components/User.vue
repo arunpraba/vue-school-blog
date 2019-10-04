@@ -17,28 +17,31 @@
 
       <div class="card-body">
         <p class="card-sub-title muted">Friends</p>
-        <span
+        <button
           class="btn btn-outlined btn btn-info btn-sm mr-2 mb-1"
           v-for="friend in list.friends"
           :key="friend.id"
-        >{{friend.name}}</span>
+          @click="getFriendProfile(friend.name)"
+        >{{friend.name}}</button>
       </div>
-      <!-- <div class="card-body">
-        <p class="card-sub-title muted">Tags</p>
-        <span
-          class="badge badge-pill badge-info mr-2"
-          v-for="(tag, index) in list.tags"
-          :key="index"
-        >{{tag}}</span>
-      </div>-->
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'User',
   props: ['list'],
+  data() {
+    return {
+      lists: [],
+      frinedProfile: {},
+      fetchUrl:
+        'https://gist.githubusercontent.com/arunprabak/b3aab2e9601c440babbbaed5201c8e4f/raw/18fe6a1700a45d30990a202039785684a704212b/people.json'
+    };
+  },
   filters: {
     capitalize: function(value) {
       if (!value) return '';
@@ -46,9 +49,26 @@ export default {
       return value.charAt(0).toUpperCase() + value.slice(1);
     }
   },
+  created() {
+    this.fetchData();
+  },
   computed: {
     onSale() {
       return 'OnSale';
+    }
+  },
+  methods: {
+    fetchData() {
+      axios.get(this.fetchUrl).then(res => {
+        this.lists = res.data;
+      });
+    },
+    getFriendProfile(friendName) {
+      const name = friendName.replace(' ', '').toLowerCase();
+      const friendProfile = this.lists.find(
+        el => el.name.replace(' ', '').toLowerCase() === name
+      );
+      console.log(friendProfile);
     }
   }
 };

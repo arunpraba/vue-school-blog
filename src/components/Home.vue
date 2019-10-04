@@ -34,7 +34,6 @@ export default {
   },
   methods: {
     fetchData() {
-      axios;
       axios.get(this.fetchUrl).then(res => {
         this.lists = res.data;
       });
