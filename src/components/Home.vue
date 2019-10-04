@@ -1,34 +1,9 @@
 <template>
   <div>
-    <div class="container app-container">
-      <div class="d-flex flex-wrap row">
-        <div class="card-columns">
-          <div v-for="list in lists" :key="list.id">
-            <!-- <div class="card">
-              <img class="card-img-top" :src="list.picture" alt="Card image cap" />
-              <div class="card-body">
-                <h3 class="card-title">{{list.name}}</h3>
-                <p class="card-text">{{list.about}}</p>
-              </div>
-              <div class="card-body bg-warning">
-                <h5 class="card-title text-center" v-if="list.posts.length>0">Posts</h5>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item" v-for="post in list.posts" :key="post.id">
-                  <b>{{post.title | capitalize}}</b>
-                </li>
-              </ul>
-
-              <div class="card-body">
-                <span
-                  class="badge badge-pill badge-info mr-2"
-                  v-for="(tag, index) in list.tags"
-                  :key="index"
-                >{{tag}}</span>
-              </div>
-            </div>-->
-            <User :list="list" />
-          </div>
+    <div class="d-flex flex-wrap row">
+      <div class="card-columns">
+        <div v-for="list in lists" :key="list.id">
+          <User :list="list" />
         </div>
       </div>
     </div>
@@ -37,7 +12,7 @@
 
 <script>
 import User from './User';
-import lists from '../data.json';
+import axios from 'axios';
 
 export default {
   name: 'Home',
@@ -46,8 +21,24 @@ export default {
   },
   data: function() {
     return {
-      lists
+      lists: [],
+      fetchUrl:
+        'https://gist.githubusercontent.com/arunprabak/b3aab2e9601c440babbbaed5201c8e4f/raw/18fe6a1700a45d30990a202039785684a704212b/people.json'
     };
+  },
+  created() {
+    this.fetchData();
+  },
+  watch: {
+    $route: 'fetchData'
+  },
+  methods: {
+    fetchData() {
+      axios;
+      axios.get(this.fetchUrl).then(res => {
+        this.lists = res.data;
+      });
+    }
   }
 };
 </script>

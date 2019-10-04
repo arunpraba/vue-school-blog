@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand mx-auto" href="/">{{name}}</a>
+        <router-link class="navbar-brand mx-auto" to="/">{{name}}</router-link>
       </div>
     </nav>
   </div>
@@ -13,7 +13,8 @@ export default {
   name: 'Navbar',
   data: function() {
     return {
-      name: 'School Blog'
+      name: 'People Blog',
+      about: 'About'
     };
   }
 };

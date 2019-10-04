@@ -3,7 +3,7 @@
     <div class="card">
       <img class="card-img-top" :src="list.picture" alt="Card image cap" />
       <div class="card-body">
-        <h3 class="card-title">{{list.name}}</h3>
+        <router-link class="h3 text-info pointer" :to="`/user/${list.id}`">{{list.name}}</router-link>
         <p class="card-text">{{list.about}}</p>
       </div>
       <div class="card-body">
@@ -23,14 +23,14 @@
           :key="friend.id"
         >{{friend.name}}</span>
       </div>
-      <div class="card-body">
+      <!-- <div class="card-body">
         <p class="card-sub-title muted">Tags</p>
         <span
           class="badge badge-pill badge-info mr-2"
           v-for="(tag, index) in list.tags"
           :key="index"
         >{{tag}}</span>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
@@ -44,6 +44,11 @@ export default {
       if (!value) return '';
       value = value.toString();
       return value.charAt(0).toUpperCase() + value.slice(1);
+    }
+  },
+  computed: {
+    onSale() {
+      return 'OnSale';
     }
   }
 };

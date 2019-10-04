@@ -17,3 +17,20 @@
 .app-container {
   margin-top: 5rem;
 }
+
+.fa {
+  cursor: pointer;
+}
+
+.pointer {
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.profile-img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
